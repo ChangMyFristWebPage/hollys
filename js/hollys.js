@@ -1,4 +1,13 @@
+$(document).ready(function() {
+
+}); 
+
+
+
+
 $(function(){
+
+$('.loding').css('opacity','0')
   var bgSlide = new Swiper('.bg-slide .swiper-container', {
       pagination: {
           el: '.swiper-pagination',
