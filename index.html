@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/hollys.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    <title>Document</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/hollys.js"></script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=36eec6220eb60bbccd41a689bfc95634"></script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+    
+
+    
+</head>
+<body> 
+    <div id="login">
+        <div class="wrap">
+            <button class="close"><i class="material-icons">close </i></button>  
+            <h1><a href="#" class="logo"><span class="blind">할리스로고</span></a></h1>                    
+            <div class="form">
+                <div class="id">
+                    <label  class="blind"  > 아이디</label>
+                    <input type="text" id="id" placeholder="아이디" >
+                </div>
+                <div class="password">
+                    <label for="" class="blind"> 비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호">
+                </div>
+                <div class="btn">
+                    <label for="" class="blind"> 로그인</label>                    
+                    <h2>로그인</h2>
+                </div>
+                <div class="check">
+                    <input type="checkbox"><label for=""> 로그인 상태유지</label>
+                </div>
+            </div>
+            <div class="idpw">
+                <a href="#" class="membership">회원가입</a>
+                <a href="#" id="idfind">아이디찾기</a>
+                <a href="#" id="pwfind">비밀번호찾기</a>                
+            </div>
+        </div>
+    </div>                
+      <script>
+        function checkz() {
+          var getIntro = $("#intro").val().replace(/\s|/gi,'');
+          var hobbyCheck = false;
+          var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+          var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/);
+          var getName= RegExp(/^[가-힣]+$/);
+          var fmt = RegExp(/^\d{6}[1234]\d{6}$/); //형식 설정
+          var buf = new Array(13); //주민등록번호 배열     
+          //아이디 공백 확인
+          if($("#tbID").val() == ""){
+            alert("아이디 입력바람");
+            $("#tbID").focus();
+            return false;
+          }
+     
+          //이름의 유효성 검사
+          if(!getCheck.test($("#tbID").val())){
+            alert("형식에 맞게 입력해주세요");
+            $("#tbID").val("");
+            $("#tbID").focus();
+            return false;
+          }
+     
+          //비밀번호
+          if(!getCheck.test($("#tbPwd").val())) {
+          alert("형식에 맞춰서 PW를 입력해주세요");
+          $("#tbPwd").val("");
+          $("#tbPwd").focus();
+          return false;
+          }
+     
+          //아이디랑 비밀번호랑 같은지
+          if ($("#tbID").val()==($("#tbPwd").val())) {
+          alert("비밀번호와 아이디가 같습니다. 다시입력해주세요");
+          $("#tbPwd").val("");
+          $("#tbPwd").focus();
+          }
+     
+          //비밀번호 똑같은지
+          if($("#tbPwd").val() != ($("#cpass").val())){ 
+          alert("비밀번호가 다릅니다.");
+          $("#tbPwd").val("");
+          $("#cpass").val("");
+          $("#tbPwd").focus();
+          return false;
+         }
+     
+         //이메일 공백 확인
+          if($("#mail").val() == ""){
+            alert("이메일을 입력해주세요");
+            $("#mail").focus();
+            return false;
+          }
+               
+          //이메일 유효성 검사
+          if(!getMail.test($("#mail").val())){
+            alert("이메일형식에 맞게 입력해주세요")
+            $("#mail").val("");
+            $("#mail").focus();
+            return false;
+          }
+     
+          //이름 유효성
+          if (!getName.test($("#name").val())) {
+            alert("이름을 적어주세요");
+            $("#name").val("");
+            $("#name").focus();
+            return false;
+          }
+     
+          //주민번호
+          if(($("#id_num").val() == "") || ($("#id_num_back").val() == "")){
+            alert("주민등록번호를 입력해주세요");
+            $("#id_num").focus();
+            return false;
+          }     
+          if(check_jumin() ==false){
+            return false;
+          }     
+          //관심분야
+          for(var i=0;i<$('[name="hobby[]"]').length;i++){
+            if($('input:checkbox[name="hobby[]"]').eq(i).is(":checked") == true) {
+              hobbyCheck = true;
+                alert("회원가입이 되었습니다.")   
+                $('.wrap-form').hide()
+                $('#login').show()
+            }
+          }    
+            if(!hobbyCheck){
+                alert("하나이상 관심분야를 체크해 주세요");
+                return false;
+                }  else{                                                    
+            }                       
+        return false;
+      }     
+      //주민번호 확인 함수
+      function check_jumin() {
+        var jumins3 = $("#pnum").val() + $("#nnum").val();
+          //주민등록번호 생년월일 전달
+             
+          var fmt = RegExp(/^\d{6}[1234]\d{6}$/)  //포멧 설정
+          var buf = new Array(13);
+     
+          //주민번호 유효성 검사
+          if (!fmt.test(jumins3)) {
+            alert("주민등록번호 형식에 맞게 입력해주세요");
+            $("#pnum").focus();
+            return false;
+          }     
+          //주민번호 존재 검사
+          for (var i = 0; i < buf.length; i++){
+            buf[i] = parseInt(jumins3.charAt(i));
+          }
+     
+          var multipliers = [2,3,4,5,6,7,8,9,2,3,4,5];// 밑에 더해주는 12자리 숫자들 
+          var sum = 0;
+     
+          for (var i = 0; i < 12; i++){
+          sum += (buf[i] *= multipliers[i]);// 배열끼리12번 돌면서 
+        }
+     
+        if ((11 - (sum % 11)) % 10 != buf[12]) {
+          alert("잘못된 주민등록번호 입니다.");
+          $("#pnum").focus();
+          return false;
+        }     
+        var birthYear = (jumins3.charAt(6) <= "2") ? "19" : "20";
+        birthYear += $("#pnum").val().substr(0, 2);
+        var birthMonth = $("#pnum").val().substr(2, 2);
+        var birthDate = $("#pnum").val().substr(4, 2);
+        var birth = new Date(birthYear, birthMonth, birthDate);                                                   
+        $("#year").val(birthYear);
+        $("#month").val(birthMonth);
+        $("#day").val(birthDate);            
+            }             
+      </script>
+    <div class="wrap-form">
+    <form onsubmit="return checkz()" > 
+    <h2>회원가입</h2>     
+    <i class="material-icons">close </i>
+       <table cellspacing="0">    
+            <tr> 
+              <th >아이디</th>
+              <td colspan="4"><input type="text" name="id" maxlength="12" id="tbID"placeholder="아이디를 입력하세요" > 4~12자리의 영문 대소문자와 숫자로만 입력</td>
+           </tr>
+           <tr>
+              <th >비밀번호</th>
+               <td colspan="4"><input type="password" maxlength="12" id="tbPwd" placeholder="비밀번호를 입력하세요"> 4~12자리의 영문 대소문자와 숫자로만 입력</td>
+           </tr>
+           <tr>
+              <th >비밀번호확인</th>
+               <td colspan="5"><input type="password" id="cpass" maxlength="12"placeholder="비밀번호를 재입력하세요"></td>               
+           </tr>
+            <tr>
+              <th>메일주소</th>
+              <td colspan="4"><input type="text" name="addr" id="mail" placeholder="이메일을 입력하세요">
+              예)id@domain.com</td>
+           </tr>
+           <tr>
+              <th>이름</th>
+              <td colspan="3"><input type="text" name="nam" id="name" placeholder="이름를 입력하세요"></td>
+            </tr>
+           
+            <tr>
+              <th>주민등록번호</th>
+              <td colspan="4"><input type="text" name="jum" id="pnum"placeholder="주민등록번호 앞자리">-<input type="password" name="jumin" id="nnum" >예)123456789</td>
+           </tr>     
+           <tr class="birth">
+              <th >생일</th>
+              <td>
+                <input type="text" autocomplete="OFF" name="nyear" id="year"  placeholder="년" > 
+                <input type="text" autocomplete="OFF" name="nmonth" id="month"placeholder="월"> 
+                <input type="text" autocomplete="OFF" name="nday" id="day" placeholder="일" > 
+            </td>    
+           </tr>     
+          <tr class="faver  ">
+            <th>관심분야</th>
+            <td colspan="3"><input type="checkbox" name="hobby[]" value="컴퓨터" >원두
+                <input type="checkbox" name="hobby[]" value="인터넷">핸드드립
+                <input type="checkbox" name="hobby[]" value="여행">스무디
+                <input type="checkbox" name="hobby[]" value="영화감상">베이커리
+                <input type="checkbox" name="hobby[]" value="음악감상">기타
+            </td>
+        </tr>     
+        <tr style="display: none">
+            <td >자기소개</td>
+            <td colspan="3"><textarea name="my_intro" id="intro" cols="50" rows="5"></textarea></td>
+        </tr>   
+        <tr class="phone">
+            <th >휴대전화 번호</th>
+            <td>                   
+               <select name="" id="">
+                   <option value="">010</option>
+                   <option value="">011</option>
+                   <option value="">020</option>
+                   <option value="">030</option>
+                   <option value="">040</option>
+               </select>-
+                <input type="text" >- <input type="text" > 
+            </td>    
+             </tr>           
+    </table>
+    <p class="submit">
+        <input type="submit" value="회원가입" class="h1">               
+    </p>    
+   </form>
+  
+</div>     
+<div class="idfind">
+    <form action="">
+            <i class="material-icons">close </i>
+        <div class="idone" >
+           <div> <input type="radio" name="find" class="radio" checked> <p>등록한 휴대전화로 찾기</p></div>
+            <table class="one on">
+                <tr>
+                    <th>이름</th>
+                    <td><input class="names" type="text" ></td>
+                </tr>
+                <tr>
+                    <th rowspan="2">휴대전화</th>
+                    <td >
+                        <select name="" id="">
+                            <option value="">010</option>
+                            <option value="">011</option>
+                            <option value="">020</option>
+                            <option value="">030</option>
+                            <option value="">040</option>
+                        </select>-
+                        <input type="text" class="num" maxlength="4" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>-<input type="text"class="num"maxlength="4" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                         <span class="certified">인증번호받기</span>
+                    </td>                    
+                </tr>
+                <tr>
+                    <td><input type="text" class="read" maxlength="6" readonly placeholder="인증번호 6자리 입력" ></td>
+                </tr>
+            </table>
+        </div>
+        <div class="idtwo">
+            <div><input type="radio" name="find" class="radio"> <p>등록한 이메일로 찾기</p></div>                  
+            <table class="two">
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" class="names" ></td>
+                </tr>
+                <tr>
+                    <th rowspan="2" >이메일 주소</th>
+                    <td>                        
+                        <input type="text" class="mailss" ><span class="certified">인증번호받기</span>
+                    </td>                   
+                </tr>
+                <tr>
+                    <td><input type="text" class="reads" maxlength="6" readonly placeholder="인증번호 6자리 입력"></td>
+                </tr>
+            </table>
+            
+        </div>
+        <span class="ok">확인</span>
+    </form>
+</div>
+<div class="pwfind">
+    <form action="">
+            <i class="material-icons">close </i>
+        <div class="idone" >           
+            <table class="one on">
+                <tr>
+                    <th>아이디</th>
+                    <td><input type="text" class="id" ></td>
+                </tr>
+                <tr>
+                    <th rowspan="2">휴대전화</th>
+                    <td >
+                        <select name="" id="">
+                            <option value="">010</option>
+                            <option value="">011</option>
+                            <option value="">020</option>
+                            <option value="">030</option>
+                            <option value="">040</option>
+                        </select>-
+                        <input type="text"maxlength="4" class="num"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>-<input type="text" maxlength="4" class="num"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <span class="certified">인증번호받기</span>
+                    </td>                    
+                </tr>
+                <tr>
+                    <td><input type="text" class="read"maxlength="6" readonly placeholder="인증번호 6자리 입력" ></td>
+                </tr>
+            </table>
+        </div>        
+        <span class="ok">확인</span>
+    </form>
+</div>
+
+    <!-- 로그인 부분   -->
+    <header class="center"> 
+        <h1><a href="#" class="logo"> <span class="blind">할리스로고</span></a></h1>
+        <ul class="top-sub">
+            <li class="login on"><a href="">log-in</a></li>
+            <li><a href="" class="membership">회원가입</a></li>
+            <li><a href="">고객센터</a></li>
+            <!-- 언어 부분 수정  -->
+            <li>                
+                <ul class="lang">
+                    <li class="on">Korean</li>
+                    <li>English</li>
+                    <li>Japean</li>
+                </ul>                
+                <i class="material-icons">keyboard_arrow_down</i>
+            </li>
+        </ul>            
+        <nav>
+            <ul class="gnb">
+                <li class="menu"> 
+                    <a href="#" id="on" >MENU<small>메뉴</small></a>                                               
+                    <ul>
+                        <li><a href="#">New menu</a></li>
+                        <li><a href="#">COFFEE</a></li>
+                        <li><a href="#">라떼ㆍ초콜릿ㆍ티</a></li>
+                        <li><a href="#">할리치노ㆍ빙수</a></li>
+                        <li><a href="#">스파클링ㆍ아이스티</a></li>
+                        <li><a href="#">베이커리ㆍ스낵MD</a></li>
+                        <li><a href="#">MD상품</a></li>
+                        <li><a href="#">MD원두</a></li>
+                    </ul>                   
+                </li>
+                <li class="store" >                     
+                    <a href="#"id="on" >STORE<small>매장</small></a>            
+                    <ul>                            
+                        <li><a href="#">국내</a></li>
+                        <li><a href="#">해외</a></li>
+                    </ul>                   
+                </li>
+                <li class="reword" >
+                    <a href="#"id="on" >REWORD<small>서비스 혜택</small></a>               
+                    <ul>                            
+                        <li><a href="#">할리스콘</a></li>
+                        <li><a href="#">기프트 카드</a></li>
+                        <li><a href="#">스마트 오더</a></li>
+                        <li><a href="#">맴버십 혜택안내</a></li>
+                    </ul>                    
+                </li>
+                <li class="hollys news" >                    
+                    <a href="#" id="on">HOLLYS NEWS<small>이벤트 및 공지</small></a>                    
+                    <ul>                            
+                        <li><a href="#">Notice</a></li>
+                        <li><a href="#">Event</a></li>
+                    </ul>                    
+                </li>
+                <li class="hollys is">                    
+                    <a href="#"  id="on" >HOLLYS IS<small>할리스 소개</small></a>                
+                    <ul>                        
+                        <li><a href="#">HOLLYS Coffee</a></li>
+                        <li><a href="#">About Coffee</a></li>
+                        <li><a href="#">CSR</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">혜택안내</a></li>
+                        <li><a href="#">본사위치</a></li>
+                        <li><a href="#">채용안내</a></li>
+                        <li><a href="#">가맹개설안내</a></li>
+                        <li><a href="#">B2B 사업소개</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="depth2-bg">
+                <h2>MENU</h2>
+            </div>
+        </nav>          
+    </header>
+    
+    <span class="liner"></span>
+    <div class="bg-slide">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div></div>
+                </div>
+                <div class="swiper-slide">
+                    <div></div>
+                </div>
+                <div class="swiper-slide">
+                    <div></div>
+                </div> 
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"><i class="material-icons">
+                    keyboard_arrow_right</i></div>
+            <div class="swiper-button-prev"><i class="material-icons">
+                    keyboard_arrow_left</i></div>            
+        </div>    
+    </div>
+<!-- 스와이퍼 슬라이드 bg 넣기 -->
+    <article class="mamber">
+        <div class="left">  
+            <span>
+                <p>할리스 맴버십만의 <b>특별한 혜택</b><br>
+                할리스 맴버십<b>'crown'</b>으로 <br>
+                 다양안 혜택을 즐겨보세요.</p>
+            </span>
+            <span class="detail">
+                <a href="#">자세히 보기</a>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </span>
+        </div>
+        <!-- 오른쪽 실버 골드 레드  -->
+        <div class="right">
+            <div class="postic">
+                <ul>
+                    <li class="on r">RED</li>
+                    <li class="g">GOLD</li>
+                    <li class="s">SLIVER</li>
+                </ul>
+            </div>
+            <div class="bg-area">                
+                <div class="red on">
+                    <ul>
+                        <li>
+                            <span class="red-icon"></span>
+                            <strong>crown48개 적립</strong>
+                            <span class="line"></span>
+                        </li>
+                        <li><b>★</b> 다양한 맴버십 프로모션 참여 기회제공</li>
+                        <li><b>★</b>  크라운 12개 적립시, 제조음료(R)무료 쿠폰 제공</li>
+                        <li><b>★</b>  커피 MD포함 1만원 이상 구매시, 아메리카노 (R)1잔 무료쿠폰 제공</li>
+                        <li><b>★</b>  1+1 쿠폰제공(프로모션에 따라 내용상이)</li>
+                        <li><b>★</b>  커피음료 무료 사이즈업 or 샷추가 or 시럽 추가 중 택1(본인에 한해 1일 1잔에 한함) </li>
+                        <li><b>★</b>  BIRTHDAY 쿠폰 제공(제조음료 R1잔 무료)</li>
+                    </ul>
+                </div>
+                <div class="gold">
+                    <ul>
+                        <li>
+                            <span class="gold-icon"></span>
+                            <strong>crown12개 적립</strong>
+                            <span class="line"></span>
+                        </li>
+                        <li><b>★</b>  다양한 맴버십 프로모션 참여 기회제공</li>
+                        <li><b>★</b> 크라운 12개 적립시, 제조음료(R)무료 쿠폰 제공</li>
+                        <li><b>★</b> 커피 MD포함 1만원 이상 구매시, 아메리카노 (R)1잔 무료쿠폰 제공</li>
+                        <li><b>★</b>  1+1 쿠폰제공(프로모션에 따라 내용상이)</li>
+                        <li><b>★</b>  커피음료 무료 사이즈업 or 샷추가 or 시럽 추가 중 택1(본인에 한해 1일 1잔에 한함) </li>                    
+                    </ul>
+                </div>
+                <div class="sliver">
+                    <ul>
+                        <li>
+                            <span class="sliver-icon"></span>
+                            <strong>맴버십 회원 가입 시</strong>
+                            <span class="line"></span>
+                        </li>
+                        <li><b>★</b> 다양한 맴버십 프로모션 참여 기회제공</li>
+                        <li><b>★</b> 크라운 12개 적립시, 제조음료(R)무료 쿠폰 제공</li>
+                        <li><b>★</b> 커피 MD포함 1만원 이상 구매시, 아메리카노 (R)1잔 무료쿠폰 제공</li>
+                        <li><b>★</b>1+1 쿠폰제공(프로모션에 따라 내용상이)</li>                  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article class="manage">
+ <!-- Swiper -->
+        <div class="swiper-container">
+            <span class="name">SMART ORDER</span>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="one">
+                        <img src="img/manage1.png" alt="">
+                        <p> <i> 편리한 주문서비스</i> <br>
+                            <strong>Smart Order</strong> <br>
+                            주문과 결제,<b>맴버십 혜택</b>까지 <br>
+                            더 빠르고 더 간편하게<br> 
+                            할리스를 즐기세요.
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="two">
+                        <img src="img/manage2.png" alt="">
+                        <p><strong>나만의 메뉴를 만들고<br>
+                            바로 주문하기<br>
+                        </strong> 
+                            메뉴별 옵션선택과 할리스<br>
+                            맴버십도 혜택도 간편하게
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="three">
+                        <img src="img/manage3.png" alt="">
+                        <p><strong>자주찾는 매장부터 가장 <br>
+                            가까운 매장까지<br>
+                            </strong> 
+                                내위치에서 가까운 매장도 찾고 <br>
+                                자주찾는 매장도 등록하고
+                        </p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="four">
+                        <img src="img/manage4.png" alt="">
+                        <p><strong>대표카드 기능을통한 <br>
+                            편리한 모바일 결제<br> 
+                        </strong> 
+                            나만의 대표 카드를 설정하고 <br>
+                            보다 빠르고 편리하게
+                        </p>
+                    </div>
+                </div>    
+            </div>
+        <!-- Add Pagination -->        
+        </div>
+    </article>
+    <article class="find">  
+        <div class="map_wrap">
+            <i class="material-icons">close </i>  
+            <div id="map" style="width:1400px;height:500px;position:relative;overflow:hidden;margin: auto"></div> 
+            <!-- 지도타입 컨트롤 div 입니다 -->
+            <div class="custom_typecontrol radius_border">
+                <span id="btnRoadmap" class="selected_btn" onclick="setMapType('roadmap')">지도</span>
+                <span id="btnSkyview" class="btn" onclick="setMapType('skyview')">스카이뷰</span>
+            </div>
+            <!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+            <div class="custom_zoomcontrol radius_border"> 
+                <span onclick="zoomIn()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
+                <span onclick="zoomOut()"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
+            </div>
+        </div>
+        <div class="black"></div>
+            <div class="center">
+                <div class="left">
+                <div class="box">
+                <span id="find"></span>
+            </div>
+                <div class="box">
+                <span class="manage"></span>
+            </div>
+            </div>
+            <div class="right">
+                <h1>커피를 마실때가 참 좋다 <br>
+                    생각할 시간을 주기 때문이다. <br>
+                    그것은 음료 이상이다.
+                </h1>
+                <p>-커투르드 스타인-</p>
+            </div>
+        </div>
+    </article>
+
+    <div id="manage">
+            <button class="close"><i class="material-icons">close </i></button>  
+        <h1>가맹문의안내</h1>
+        <div class="top">
+            <img src="img/que.png" alt="">
+        </div>
+        <div class="bottom">
+            <div class="text">
+                <p class="protect">
+                         oo의 개인정보취급방침은 다음과 같은 내용을 담고 있습니다. <br><br>
+                        가. 수집하는 개인정보 항목 및 수집방법<br>
+                        나. 개인정보의 수집 및 이용목적<br>
+                    
+                        <b> 가. 수집하는 개인정보 항목 및 수집방법</b><br>
+                        ○○는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고
+                        있습니다.<br>
+                        ▶ 이름, 이메일, 주민등록번호, 주소, 연락처, 핸드폰 번호, 월소득, 직업
+                        또한 서비스 이용과정이나 사업 처리 과정에서 아래와 같은 정보들이 생성되어
+                        수집될 수 있습니다.<br>
+                        ▶ 서비스 이용기록, 접속 로그, 쿠키, 접속 IP 정보, 결제기록, 이용정지 기록
+                        ○○는 다음과 같은 방법으로 개인정보를 수집합니다.<br>
+                        ▶ 홈페이지, 서면양식, 전화․팩스를 통한 회원가입, 상담 게시판, 경품 행사
+                        응모, 배송 요청<br>
+                        ▶ 제휴사로부터의 제공<br>
+                        ▶ 생성정보 수집 툴을 통한 수집<br>
+                        <b> 나. 개인정보 수집 및 이용목적</b> <br>
+                        ○○는 수집한 개인정보를 다음의 목적을 위해 활용합니다.<br>
+                        ▶ 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산<br>
+                        ․콘텐츠 제공, 물품배송 또는 청구서 등 발송, 금융거래 본인 인증 및 금융 서비스,
+                        구매 및 요금 결재, 요금추심<br>
+                        ▶ 회원 관리<br>
+                        ․회원제 서비스 이용에 따른 본인확인, 개인식별, 불량회원의 부정 이용 방지와
+                        비인가 사용 방지, 가입 의사 확인, 가입 및 가입횟수 제한, 만14세 미만 아동 개인
+                        정보 수집 시 법정 대리인 동의여부 확인, 추후 법정 대리인 본인확인, 분쟁 조정을
+                        위한 기록보존, 불만처리 등 민원처리, 고지사항 전달<br>
+                        ▶ 마케팅 및 광고에 활용<br>
+                        ․신규 서비스(제품) 개발 및 특화, 인구통계학적 특성에 따른 서비스 제공 및 광고
+                        게재, 접속 빈도 파악, 회원의 서비스 이용에 대한 통계, 이벤트 등 광고성 정보 전
+                        달<br>
+                        ▶ 기타<br>
+                        ․oooo, ooo, ooo
+                </p>
+                <div class="check">
+                    <input type="checkbox" id="che" > <i> 개인정보 수집에 동의합니다</i>
+                </div>
+              <table>
+                    <tr class="text1">
+                        <th>이름</th>
+                        <td>
+                            <div>
+                                <input type="text" id="name"  placeholder="이름을 입력하세요">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="text2">
+                        <th>휴대전화</th>
+                        <td>
+                            <div>
+                                  <input type="text"id="phone" maxlength="11" placeholder="휴대전화 번호를 입력하세요"onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="text3">
+                        <th>이메일</th>
+                        <td>
+                            <div>
+                                <p>
+                                    <input type="text" id="address" placeholder="이메일을 입력하세요">
+                                </p>
+                                <p>
+                                    <input type="text" id="add">
+                                </p>
+                                <p>
+                                    <select id="mailselect">
+                                        <option value="1">이메일</option>
+                                        <option value="2">naver.com</option>
+                                        <option value="3">daum.net</option>
+                                        <option value="4">gmail.com</option>
+                                        <option value="5">hammail.net</option>
+                                        <option value="6">yahoo.com</option>
+                                    </select>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="text4">
+                        <th>주소</th>
+                        <td>
+                            <input type="text" id="sample4_postcode" placeholder="우편번호">
+                            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                            <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+                            <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+                            <span id="guide" style="color:#999;display:none"></span>
+                            <input type="text" id="sample4_detailAddress" placeholder="상세주소">
+                            <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+                            
+                            <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+                            <script>
+                                //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+                                function sample4_execDaumPostcode() {
+                                    new daum.Postcode({
+                                        oncomplete: function(data) {
+                                            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                            
+                                            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                                            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                                            var roadAddr = data.roadAddress; // 도로명 주소 변수
+                                            var extraRoadAddr = ''; // 참고 항목 변수
+                            
+                                            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                                            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                                            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                                extraRoadAddr += data.bname;
+                                            }
+                                            // 건물명이 있고, 공동주택일 경우 추가한다.
+                                            if(data.buildingName !== '' && data.apartment === 'Y'){
+                                               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                                            }
+                                            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                                            if(extraRoadAddr !== ''){
+                                                extraRoadAddr = ' (' + extraRoadAddr + ')';
+                                            }
+                            
+                                            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                                            document.getElementById('sample4_postcode').value = data.zonecode;
+                                            document.getElementById("sample4_roadAddress").value = roadAddr;
+                                            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                                            
+                                            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                                            if(roadAddr !== ''){
+                                                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                                            } else {
+                                                document.getElementById("sample4_extraAddress").value = '';
+                                            }
+                            
+                                            var guideTextBox = document.getElementById("guide");
+                                            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                                            if(data.autoRoadAddress) {
+                                                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                                                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                                                guideTextBox.style.display = 'block';
+                            
+                                            } else if(data.autoJibunAddress) {
+                                                var expJibunAddr = data.autoJibunAddress;
+                                                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                                                guideTextBox.style.display = 'block';
+                                            } else {
+                                                guideTextBox.innerHTML = '';
+                                                guideTextBox.style.display = 'none';
+                                            }
+                                        }
+                                    }).open();
+                                }
+                            </script>
+                        </td>
+                    </tr>
+              </table>
+              <button class="sub">확인</button>
+            </div>
+        </div>        
+    </div>
+    <div class="black"></div>
+    <article class="hollys-live center">
+        <div class="popup">
+            <article>
+            <div class="poto">
+                <img src="img/live10.png" alt="">
+            </div>
+            <div class="text">
+                <p>Facebook </p>
+                <small>2019.05.13 </small>
+                <strong>자연을생각하는 할리스커피</strong>
+                <span>바로가기<i class="material-icons">arrow_forward</i></span>
+            </div>
+            <button><i class="material-icons">close </i></button>        
+        </article>
+        </div>
+        <div class="black"></div>
+        <span class="name">HOLLYS LIVE</span>
+        <div class="top">
+            <div class="live1">
+                <img src="img/live1.png" alt="2019.8.7">
+                <div class="live-bg">
+                    <p>Facebook</p>
+                    <strong>HOLLYS x KINTO</strong>
+                    <a href="#">more<i class="material-icons">arrow_forward</i></a>
+                </div>
+            </div>
+            <div class="live2">
+                <img src="img/live2.png" alt="2019.7.21">
+                <div class="live-bg">
+                    <p>Facebook</p>
+                    <strong>해안을 따라 눈부신 <br> 아름다움을 만나는 시간.</strong>
+                    <a href="#">more<i class="material-icons">
+                    arrow_forward    </i> </a>
+                </div>
+            </div>
+            <div class="live3">
+                <img src="img/live3.png" alt="2019.7.13">
+                <div class="live-bg">
+                    <p>Instargram</p>
+                    <strong>할리스와 킨토의 친환경<br> 대나무 컵을 소개합니다.</strong>
+                    <a href="#">more <i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+            <div class="live4">
+                <img src="img/live4.png" alt="2019.6.30">
+                <div class="live-bg">
+                    <p>blog</p>
+                    <strong>두가지 과일이 만나 입안가득
+                        상큼함을 맛보다!
+                    </strong>
+                    <a href="#">more<i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+            <div class="live5">
+                <img src="img/live5.png" alt="2019.6.24">
+                <div class="live-bg">
+                    <p>Instargram</p>
+                    <strong>따뜻한 봄과 함께 <br>
+                        리유저블 텀블러 출시.
+                    </strong>
+                    <a href="#">more <i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+        </div>
+       
+        <div class="bottom">
+            <div class="live6">
+                <img src="img/live6.png" alt="2019.6.11">
+                <div class="live-bg">
+                    <p>Facebook</p>
+                    <strong>다채로운 레이어드 <br>
+                        단호박 치즈 라운드 케익!
+                    </strong>
+                    <a href="#">more<i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+            <div class="live7">
+                <img src="img/live7.png" alt="2019.6.10">
+                <div class="live-bg">
+                    <p>Facebook</p>
+                    <strong>가정의달 5월! 할리스의 트립백&스틱커피로<br>
+                        우리집을 커피향 넘치는 홈카페로 만드세요.
+                    </strong>
+                    <a href="#">more <i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+            <div class="live8">
+                <img src="img/live8.png" alt="2019.5.28">
+                <div class="live-bg">
+                    <p>Instargram</p>
+                    <strong>작지만 완벽한 할리스의<br> 라운드 케익.</strong>
+                    <a href="#">more <i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+            <div class="live9">
+                <img src="img/live9.png" alt="2019.5.21">
+                <div class="live-bg">
+                    <p>blog</p>
+                    <strong>자연을 사랑하는 할리스커피 <br>X 미르 텀블러와 함께하세요.
+                    </strong>
+                    <a href="#">more<i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+            <div class="live10">
+                <img src="img/live10.png" alt="2019.5.10">
+                <div class="live-bg">
+                    <p>Instargram</p>
+                    <strong>커피를 사랑하는 사람들의 커피, 
+                        하리스 커피
+                    </strong>
+                    <a href="#">more <i class="material-icons">
+                            arrow_forward</i></a>
+                </div>
+            </div>
+        </div>
+    </article>
+    <footer >
+        <div class="center">
+            <h1 class="gray-logo"></h1>
+            <div>
+                <ul class="site-nav">
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">서비스 이용약관</a></li>
+                    <li><a href="#">맴버십이용약관</a></li>
+                    <li><a href="#">고객문의</a></li>
+                    <li><a href="#">고객설문</a></li>
+                    <li><a href="#">사이트맵</a></li>
+                    <li><a href="#">BI소개</a></li>
+                </ul>
+                <ul class="address">
+                    <li><p>법인명: (주) 할리스에프앤비 대표자: 김유진 사업자등록번호 211-87-61044 통신판매업: 제2019-서울종로-0193호 </p></li>
+                    <li><p>주소 : 서울특별시 종로구 율곡로 88 삼환빌딩 8층 (운니동) 대표전화 : 02-2188-7100 (가맹문의 : 1670-4432)</p></li>                
+                </ul>
+                <small>COPYRIGHT (C) HOLLYS COFFEECo., Ltd. All Rights Reserved.</small>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
