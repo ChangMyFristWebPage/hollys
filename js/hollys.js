@@ -108,9 +108,14 @@ $(function(){
     $('.pwfind').show()
   })
 
-  $('.pwfind form .certified').click(function(){      
-    alert('인증번호를 발송했습니다.')
-    $(this).parents('table').find('.read').removeAttr('readonly').css('background','white')
+  $('.pwfind form .certified').click(function() {      
+    if($('.pwfind .one .num').val() == ''){
+      alert('휴대전화 번호를 확인해주세요.')
+    }else{
+      alert('인증번호를 발송했습니다.')
+      $(this).parents('table').find('.read').removeAttr('readonly').css('background','white')
+    }
+    
   })
  
   $('.pwfind span.ok').click(function(){
