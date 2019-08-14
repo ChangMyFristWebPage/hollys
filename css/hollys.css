@@ -151,12 +151,12 @@ header .depth2-bg h2{color: #bbb; border-bottom:4px solid #ba000d ;text-align: l
 .mamber .left{    width: 600px; height: 330px;    z-index: 5;position: relative;
     transform: skewX(-30deg)translateX(-100px);
 background: #ba000d;    box-shadow: 5px 0px 10px 9px rgba(0 ,0, 0 ,0.6);}
-.mamber .left span:nth-child(1){position: absolute;top: 0; color: #fff;left: 60px; top: 40px;
+.mamber .left span:nth-child(1){position: absolute;top: 0; color: #fff;left: 100px; top: 40px;
      transform: skewX(30deg);margin-left: 50px;}
 .mamber .left span:nth-child(1) p{font-size: 24px; letter-spacing: -1px}
 .mamber .left span:nth-child(1) b{font-size: 28px;  letter-spacing: 1px}
 .mamber .left .detail{color: #fff; border-bottom: 1px solid #fff;
-position: absolute; top: 200px;left: 60px; transition: 0.5s;
+position: absolute; top: 200px;left: 100px; transition: 0.5s;
 transform: skewX(30deg); margin-left: 120px;}
 
 .mamber .left .detail a{padding: 4px 8px; color: #fff}

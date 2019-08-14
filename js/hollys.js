@@ -18,7 +18,7 @@ $(function(){
       },
     });
      //링크안타지기
-     $('header .top-sub li a').click(function(e){
+     $('header .top-sub li a,.mamber .detail a,footer a').click(function(e){
       e.preventDefault();
     })
     // 로그인
@@ -331,6 +331,8 @@ $('.pwfind i').click(function(){
         }
       }).open();
     }
+
+    
 
     var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
