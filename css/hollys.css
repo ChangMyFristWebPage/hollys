@@ -87,7 +87,7 @@ line-height: 36px; font-weight: bold;}
 
 header{z-index: 2;}
 header h1{display: inline-block; padding-top: 30px;margin-left: 40px} 
-header h1 .logo{background-image: url(../img/logo.PNG);width: 70px; height: 80px; }
+header h1 .logo{background-image: url(../img/logo.png);width: 70px; height: 80px; }
 header .top-sub{float: right;;margin-right: 0px}
 header .top-sub li{display: inline-block;margin-left: 30px}
 
