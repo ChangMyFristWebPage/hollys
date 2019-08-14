@@ -242,11 +242,10 @@ $('.pwfind i').click(function(){
   });
   //지도 열기
   $('.find #find').click(function(){
-    $('.map_wrap').css('width','1240px').css('height','540px').css('opacity','1')
-    $('.find div.black').show(function(){
+    $('.map_wrap').css('width','1240px').css('height','540px').css('opacity','1').show(function(){
       //지도불러오기
-      mapOpen();
-    })
+      mapOpen();})
+    $('.find div.black').show()
   })
 
   $('.find .map_wrap .material-icons').click(function(){
