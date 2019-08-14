@@ -2,7 +2,6 @@
 $(function(){
 $('.loding').css('opacity','0')
 setTimeout(function() {$('.loding').remove()}, 1000);
-
   var bgSlide = new Swiper('.bg-slide .swiper-container', {
       pagination: {
           el: '.swiper-pagination',
@@ -44,12 +43,10 @@ setTimeout(function() {$('.loding').remove()}, 1000);
     $('.wrap-form form i').click(function(){
       $('.wrap-form').hide()
     })
-
     // 메인화면에서 회원가입 열기
     $('header .top-sub .membership').click(function(){
       $('.wrap-form').show()
-    })
-   
+    })   
     //아이디찾기 화면열기
     $('#login .idpw #idfind').click(function(){
       $('.idfind').show()
@@ -74,12 +71,10 @@ setTimeout(function() {$('.loding').remove()}, 1000);
       if($('.idfind .idone .one').hasClass('on')){
         if($('.idfind .idone .names').val() == ''){
           alert("이름 입력바람");
-          $('.idfind .idone .names').focus();
-  
+          $('.idfind .idone .names').focus();  
         }else if($('.idfind .idone .num').val() == ''){
           alert("휴대전화 번호 확인 바람");
-          $('.idfind .idone .num').focus();
-  
+          $('.idfind .idone .num').focus();  
         }else if(len == 6){
           alert('아이디를 sns로 보냈습니다.')
           $('.idfind').hide()
@@ -111,17 +106,14 @@ setTimeout(function() {$('.loding').remove()}, 1000);
   $('#login .idpw #pwfind').click(function(){
     $('.pwfind').show()
   })
-
   $('.pwfind form .certified').click(function() {      
     if($('.pwfind .one .num').val() == ''){
       alert('휴대전화 번호를 확인해주세요.')
     }else{
       alert('인증번호를 발송했습니다.')
       $(this).parents('table').find('.read').removeAttr('readonly').css('background','white')
-    }
-    
-  })
- 
+    }    
+  }) 
   $('.pwfind span.ok').click(function(){
     var len=$('.pwfind .idone .read').val().length  
     if($('.pwfind .one .id').val() == ''){          
@@ -202,8 +194,7 @@ $('.pwfind i').click(function(){
     $('.mamber .right .postic ul li').click(function(){
       $('.mamber .right .postic ul li').removeClass('on')
       $(this).addClass('on')      
-      $('.mamber .right .bg-area div').removeClass('on')
-      
+      $('.mamber .right .bg-area div').removeClass('on')      
       if($(this).is('.r')){
         $('.mamber .right .bg-area .red').addClass('on')
       }if($(this).is('.g')){
@@ -256,7 +247,6 @@ $('.pwfind i').click(function(){
       mapOpen();})
     $('.find div.black').show()
   })
-
   $('.find .map_wrap .material-icons').click(function(){
     $('.map_wrap').css('width','0%').css('height','0px').css('opacity','0')
     $('.find div.black').hide()
@@ -311,26 +301,22 @@ $('.pwfind i').click(function(){
           if(extraRoadAddr !== ''){
               extraRoadAddr = ' (' + extraRoadAddr + ')';
           }
-
           // 우편번호와 주소 정보를 해당 필드에 넣는다.
           document.getElementById('sample4_postcode').value = data.zonecode;
           document.getElementById("sample4_roadAddress").value = roadAddr;
-          document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-          
+          document.getElementById("sample4_jibunAddress").value = data.jibunAddress;          
           // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
           if(roadAddr !== ''){
               document.getElementById("sample4_extraAddress").value = extraRoadAddr;
           } else {
               document.getElementById("sample4_extraAddress").value = '';
           }
-
           var guideTextBox = document.getElementById("guide");
           // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
           if(data.autoRoadAddress) {
               var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
               guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
               guideTextBox.style.display = 'block';
-
           } else if(data.autoJibunAddress) {
               var expJibunAddr = data.autoJibunAddress;
               guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
@@ -342,7 +328,6 @@ $('.pwfind i').click(function(){
         }
       }).open();
     }
-
   function mapOpen(){
     var infowindow = new kakao.maps.InfoWindow({zIndex:1});
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -350,43 +335,33 @@ $('.pwfind i').click(function(){
         center: new kakao.maps.LatLng(37.573378, 126.974237), // 지도의 중심좌표
         level: 2 // 지도의 확대 레벨
     };  
-
     // 지도를 생성합니다    
     var map = new kakao.maps.Map(mapContainer, mapOption); 
-
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places(); 
-
     // 키워드로 장소를 검색합니다
     ps.keywordSearch('할리스커피 서울', placesSearchCB); 
-
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     function placesSearchCB (data, status, pagination) {
-      if (status === kakao.maps.services.Status.OK) {
-  
+      if (status === kakao.maps.services.Status.OK) {  
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
-          var bounds = new kakao.maps.LatLngBounds();
-  
+          var bounds = new kakao.maps.LatLngBounds();  
           for (var i=0; i<data.length; i++) {
               displayMarker(data[i]);    
               bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-          }       
-  
+          }         
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
           map.setBounds(bounds);
       } 
   }
-
     // 지도에 마커를 표시하는 함수입니다
-    function displayMarker(place) {
-        
+    function displayMarker(place) {        
         // 마커를 생성하고 지도에 표시합니다
         var marker = new kakao.maps.Marker({
             map: map,
             position: new kakao.maps.LatLng(place.y, place.x) 
         });
-
         // 마커에 클릭이벤트를 등록합니다
         kakao.maps.event.addListener(marker, 'click', function() {
             // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다

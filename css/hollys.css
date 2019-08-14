@@ -14,9 +14,7 @@ button{background: none; border:none;}
 .mblind{display: none}
 .blind{font-size: 0; position: absolute; left:-9999px;}
 .center{width: 1240px; margin: auto; position: relative;}
-
 .loding{width: 100%;height: 100%;background:url(../img/loding.png) #ba000d ;z-index: 522121;position: fixed; background-size: cover;transition: 1s}
-
 #login{position: fixed;z-index: 11;width: 100%;height: 100%;text-align: center;background: #efefef;display: none;}
 #login .wrap{width: 600px;margin: auto}
 #login button.close{ float: right;}
@@ -47,9 +45,6 @@ form .phone select{margin-right: 10px}
 form .faver input{height: 13px;}
 form .phone select{height: 36px;}
 form i{float: right;margin-top: -50px}
-
-
-
 .idfind{width: 100%; height: 100%; position: fixed; background: #efefef; z-index: 12;display: none}
 .idfind form{width: 800px}
 .idfind form div{margin-bottom: 20px}
@@ -64,8 +59,6 @@ form i{float: right;margin-top: -50px}
 .idfind form .ok{position: absolute; left: 50%;transform: translateX(-50%); bottom: 0}
 .idfind form .one,.idfind form .two{display: none}
 .idfind form .one.on,.idfind form .two.on{display: block}
-
-
 .pwfind{width: 100%; height: 100%; position: fixed; background: #efefef; z-index: 12;display: none }
 .pwfind form{width: 800px}
 .pwfind form div{margin-bottom: 20px}
@@ -80,17 +73,12 @@ form i{float: right;margin-top: -50px}
 .pwfind form .one,.idfind form .two{display: none}
 .pwfind form .one.on,.idfind form .two.on{display: block}
 .pwfind form .ok{position: absolute; left: 50%;transform: translateX(-50%); bottom: 0;
-    background: #ba000d; width: 120px;height: 36px;text-align: center;color: #fff;
-line-height: 36px; font-weight: bold;}
-
-
-
+background: #ba000d; width: 120px;height: 36px;text-align: center;color: #fff;line-height: 36px; font-weight: bold;}
 header{z-index: 2;}
 header h1{display: inline-block; padding-top: 30px;margin-left: 40px} 
 header h1 .logo{background-image: url(../img/logo.png);width: 70px; height: 80px; }
 header .top-sub{float: right;;margin-right: 0px}
 header .top-sub li{display: inline-block;margin-left: 30px}
-
 header .top-sub li a ul li{display: none}
 header .top-sub li a ul li.on{display: block;}
 header .top-sub li a{font-size: 12px; color: #bbbbbb}
@@ -101,9 +89,6 @@ header .top-sub li .lang li:nth-child(3){display: none}
 header .top-sub li i{color: #bbb;    top: 8px;position: relative;margin-left: 8px;}
 header .top-sub li .lang+i{margin-left: 50px; }
 header .top-sub li .lang+i.on{transform: rotate(180deg)}
-
-
-
 .liner{border-bottom: 4px solid #ba000d; width: 100%;   position: absolute;top: 140px;z-index: 2;}
 header nav{margin-top: -39px; position: relative;} 
 header nav::after{content: ''; clear: both; overflow: hidden; display: block;}
@@ -117,15 +102,9 @@ header nav .gnb ul{ padding-top: 10px;position: absolute;left: 50%;transform: tr
 display: none; height: 280px }
 header nav .gnb ul li a{font-size: 12px;color:#666;}
 header nav .gnb ul li a:hover{color: #eee}
-
-header .depth2-bg{
-    width: 100%;height: 280px;background: #4f4c4b;   position: absolute; top: 60px; z-index: 2;
-    display: none;
-}
+header .depth2-bg{width: 100%;height: 280px;background: #4f4c4b;   position: absolute; top: 60px; z-index: 2;    display: none;}
 header .depth2-bg h2{color: #bbb; border-bottom:4px solid #ba000d ;text-align: left;padding-bottom: 2px;
     display: inline-block;margin-top: 20px;margin-left: 20px}
-
-
 .bg-slide{height: 540px;z-index:-1;}
 .bg-slide .swiper-container{height: 540px;;}
 .bg-slide .swiper-container img{height: 100%;}
@@ -141,24 +120,16 @@ header .depth2-bg h2{color: #bbb; border-bottom:4px solid #ba000d ;text-align: l
 .bg-slide .swiper-wrapper .swiper-slide:nth-child(1) div{background: url(../img/bg1.jpg) center;height: 100%;}
 .bg-slide .swiper-wrapper .swiper-slide:nth-child(2) div{background: url(../img/bg2.jpg) center;height: 100%;}
 .bg-slide .swiper-wrapper .swiper-slide:nth-child(3) div{background: url(../img/bg3.jpg) center;height: 100%;}
-
-
-
 /* 맴버쉽 */
 /* .mamber{display: none;} */
 .mamber{overflow: hidden;position: relative;}
 .mamber>div{float: left;}
-.mamber .left{    width: 600px; height: 330px;    z-index: 5;position: relative;
-    transform: skewX(-30deg)translateX(-100px);
+.mamber .left{    width: 600px; height: 330px;    z-index: 5;position: relative;transform: skewX(-30deg)translateX(-100px);
 background: #ba000d;    box-shadow: 5px 0px 10px 9px rgba(0 ,0, 0 ,0.6);}
-.mamber .left span:nth-child(1){position: absolute;top: 0; color: #fff;left: 120px; top: 40px;
-     transform: skewX(30deg);margin-left: 50px;}
+.mamber .left span:nth-child(1){position: absolute;top: 0; color: #fff;left: 120px; top: 40px;transform: skewX(30deg);margin-left: 50px;}
 .mamber .left span:nth-child(1) p{font-size: 24px; letter-spacing: -1px}
 .mamber .left span:nth-child(1) b{font-size: 28px;  letter-spacing: 1px}
-.mamber .left .detail{color: #fff; border-bottom: 1px solid #fff;
-position: absolute; top: 200px;left: 120px; transition: 0.5s;
-transform: skewX(30deg); margin-left: 120px;}
-
+.mamber .left .detail{color: #fff; border-bottom: 1px solid #fff;position: absolute; top: 200px;left: 120px; transition: 0.5s;transform: skewX(30deg); margin-left: 120px;}
 .mamber .left .detail a{padding: 4px 8px; color: #fff}
 .mamber .left .detail span{background: #fff; position: absolute; transition-duration: 0.15s;}
 .mamber .left .detail:hover{background: #fff; transition-delay: 0.3s}
@@ -169,10 +140,7 @@ transform: skewX(30deg); margin-left: 120px;}
 .mamber .left .detail:hover span:nth-of-type(1){height: 100%;transition-delay: 0s}
 .mamber .left .detail:hover span:nth-of-type(2){width: 100%; transition-delay: 0.15s}
 .mamber .left .detail:hover span:nth-of-type(3){height: 100%; transition-delay: 0.3s}
-
-.mamber .right{width: 100%; height: 330px; background-image: url(../img/mamber.jpg);position: absolute;right: 0;
-}
-
+.mamber .right{width: 100%; height: 330px; background-image: url(../img/mamber.jpg);position: absolute;right: 0;}
 .mamber .right .postic{margin-left: 660px;}
 .mamber .right .postic ul{margin-top: 40px;}
 .mamber .right .postic li{color: #fff;text-align: center; width:82px; height: 32px; line-height: 32px;margin-top: 10px;font-weight: bold}
@@ -196,33 +164,24 @@ position: relative; top: -5px;  left: 10px;}
 .mamber .right .bg-area div ul li{font-size: 14px; color: #666;margin-left: 10px;line-height: 32px;}
 .mamber .right .bg-area div ul li:nth-child(1){font-size: 16px;}
 .mamber .right .bg-area div ul li b{margin-right: 8px;}
-
 .mamber .right .red{display: none}
 .mamber .right .gold{display: none}
 .mamber .right .sliver{display: none}
 .mamber .right .red.on{display: block}
 .mamber .right .gold.on{display: block}
 .mamber .right .sliver.on{display: block}
-
-
 article.manage{text-align: center;margin-top: 40px}
-
 .manage>div>div>div{position: relative;}
-.manage div p{text-align: left; color: #444;  display: inline-block;    position: absolute;
-    left: 50%; }
+.manage div p{text-align: left; color: #444;  display: inline-block;    position: absolute;left: 50%; }
 .manage strong{font-size: 32px; color: #333}
 .manage .one strong{font-size: 40px;}
 .manage .one i{font-size: 28px;  font-style: initial;}
 .manage strong p{font-size: 24px;}
 .manage img{    margin-right: 400px;}
 .manage .swiper-slide{margin-top:110px; padding-bottom: 60px}
-
 .manage .swiper-container-horizontal>.swiper-pagination-bullets{bottom: initial;top: 90px;}
-.manage .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{background: none;    font-weight: bold;
-    margin: 0 80px;font-size: 24px; 
-}
+.manage .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{background: none;    font-weight: bold;margin: 0 80px;font-size: 24px; }
 .manage .swiper-pagination-bullet-active{color: #ba000d}
-
 .name{background: #ba000d; padding:4px 24px; color: #fff;font-size: 24px; text-align: center;font-weight: bold;}
 /* .find{display: none} */
 .find{background: #eaeaea; overflow: hidden;}
@@ -230,23 +189,19 @@ article.manage{text-align: center;margin-top: 40px}
 .find .left{float: left; margin-left: 40px; margin-top: 40px;}
 .find .left span{width: 480px; height: 220px; display: block;transition: 0.5s}
 .find .left span:hover{transform: scale(1.05)}
-
 .find .left .box{width: 480px; height: 220px; overflow: hidden; margin-bottom: 40px}
 .find .left #find{background-image: url(../img/find1.png)}
 .find .left .manage{background-image: url(../img/find2.png)}
 .find .right h1{font-size: 40px; color: #444}
 .find .right p{font-size:28px; color: #666;margin-top: 20px}
 .find .map_wrap .material-icons{font-size: 2.5em;position: absolute;top: 10px;z-index: 2;left: 10px;color: #444;}
-
 #manage{width: 800px; height: 640px;margin: auto;background: #fff;overflow: scroll;
-     overflow-x: hidden; z-index: 11;padding: 20px;  position: fixed;
-     left: 50%; transform: translate(-50%, -50%);    top: 50%; display:none}
+     overflow-x: hidden; z-index: 11;padding: 20px;  position: fixed;     left: 50%; transform: translate(-50%, -50%);    top: 50%; display:none}
 #manage h1{color: #444; margin-top: 40px;margin-left: 20px}
 #manage>button{color: #444; float: right;}
 #manage .top{margin: 40px 0 40px 20px;}
 #manage .bottom{ margin-left: 20px;}
-#manage .bottom .protect{overflow: scroll; width: 100%; height: 200px; border:1px solid #444; overflow-x: hidden;color: #888;
-line-height: 2;}
+#manage .bottom .protect{overflow: scroll; width: 100%; height: 200px; border:1px solid #444; overflow-x: hidden;color: #888;line-height: 2;}
 #manage .bottom .protect b{color: #444;font-size: 20px;}
 #manage .bottom .text .text3 p{display: inline-block}
 #manage .bottom table{margin-top: 40px;border-top: 1px solid #444;border-bottom: 1px solid #444;width: 100%}
@@ -258,9 +213,7 @@ line-height: 2;}
 #manage .bottom table select{ margin-bottom: -2px;margin-left: 10px; height: 22px;    vertical-align: bottom;}
 #manage .bottom table input{border:1px solid #444;padding:0 4px ; height: 20px;;}
 #manage .bottom button{background: #ba000d; width: 100px; height: 50px;color: #fff;font-size: 24px;float: right;margin-top: 40px;}
-
-.map_wrap {position: fixed;;overflow:hidden;width:0%;height:0px;left: 50%;transform: translateX(-50%); z-index: 11;opacity: 0;
-top: 30%}
+.map_wrap {position: fixed;;overflow:hidden;width:0%;height:0px;left: 50%;transform: translateX(-50%); z-index: 11;opacity: 0;top: 30%}
 .radius_border{border:1px solid #919191;border-radius:5px;}     
 .custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
 .custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
@@ -273,16 +226,11 @@ top: 30%}
 .custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
 .custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
 .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}    
-
-
-
 /* .hollys-live{display: none} */
 .hollys-live{padding-top: 40px; margin-bottom: 40px}
 .hollys-live .name{position: relative;left:40px}
-.hollys-live div div{display: inline-block;margin: 0 10px;text-align: left;
-position: relative; overflow: hidden; }
-.hollys-live div div .live-bg{background: rgba(0 ,0, 0,0.5) ; width:100%; margin: 0 0;
-    position: absolute ;bottom: -105%;padding: 20px 0px 20px 10px; transition: 0.6s}
+.hollys-live div div{display: inline-block;margin: 0 10px;text-align: left;position: relative; overflow: hidden; }
+.hollys-live div div .live-bg{background: rgba(0 ,0, 0,0.5) ; width:100%; margin: 0 0;position: absolute ;bottom: -105%;padding: 20px 0px 20px 10px; transition: 0.6s}
 .hollys-live div div:hover .live-bg{bottom: 0;transition: 0.6s}
 .hollys-live div div .live-bg p{font-size: 10px; color: #aaa;font-weight: normal;}
 .hollys-live div div .live-bg strong{font-size: 14px; color: #fff;font-weight: normal; }
@@ -298,7 +246,6 @@ position: relative; overflow: hidden; }
 .hollys-live .top .live3{width: 180px; height: 120px;}
 .hollys-live .top .live4{width: 320px; height: 220px;}
 .hollys-live .top .live5{width: 180px; height: 180px;}
-
 .hollys-live .bottom{margin-top: 20px;margin-left: 30px}
 .hollys-live .bottom div{vertical-align: top;}
 .hollys-live .bottom .live6{width: 160px; height: 220px;}
@@ -306,7 +253,6 @@ position: relative; overflow: hidden; }
 .hollys-live .bottom .live8{width: 160px; height: 220px;}
 .hollys-live .bottom .live9{width: 180px; height: 180px;}
 .hollys-live .bottom .live10{width: 280px; height: 220px;}
-
 .hollys-live .popup{position: fixed; width:1000px; height: 600px;background: #fff; z-index: 11  ;
 top: 50%;left: 50%; transform: translate(-50%, -50%);display: none; }
 .hollys-live .popup article{height: 100%;}
@@ -315,32 +261,20 @@ top: 50%;left: 50%; transform: translate(-50%, -50%);display: none; }
 .hollys-live .popup .text{vertical-align: top; color: #666;overflow: hidden; width: 270px;margin-top: 10px;}
 .hollys-live .popup .text p{display: inline-block;}
 .hollys-live .popup .text small{float: right;margin-top: 4px;}
-.hollys-live .popup .text strong{display: block;margin-top: 20px;background: #eaeaea;height: 150px;
-padding: 10px;}
+.hollys-live .popup .text strong{display: block;margin-top: 20px;background: #eaeaea;height: 150px;padding: 10px;}
 .hollys-live .popup .text span{}
 .hollys-live .popup .text span i{position: relative; left: 8px; top: 5px;}
 .hollys-live .popup button i{right: -30px; top: 10px;position: absolute; color: #fff}
 .black{width: 100%; height: 100%; position: fixed;top: 0;left: 0;
 background: rgba(0, 0, 0, 0.4); z-index: 10; display: none;}
-
-
 /* footer{display: none} */
 footer{overflow:hidden; margin-top: 40px;background: #eaeaea;border-top: 1px solid #ba000d;padding-bottom: 20px;
 position: relative;}
-footer h1{width: 70px;height: 80px;background-image: url(../img/gray-logo.png);
-    display: inline-block; margin:20px 20px 0 40px;;}
-footer div{  }
-    footer div div{display: inline-block; }
+footer h1{width: 70px;height: 80px;background-image: url(../img/gray-logo.png);display: inline-block; margin:20px 20px 0 40px;;}
+footer div div{display: inline-block; }
 footer div .site-nav{display: inline-block}
 footer div .site-nav li{display: inline-block;padding: 0 16px; border-left: 1px solid #888;line-height: 10px;}
 footer div .site-nav li:nth-child(1){padding-left: 0;border: 0}
 footer div .site-nav li a{font-size: 12px; color: #888}
-footer div .address li {}
 footer div .address li p{display: inline-block; font-size: 12px;color: #aaa}
 footer div small{font-size: 10px; color: #aaa}
-
-
-
-/* 비밀번호 인증번호 6자리 확인 
-#manage 우편번호 검색 클릭시 자료 인풋안에 넣기
-카카오맵 도메인 */
