@@ -8,7 +8,6 @@ $(function(){
         prevEl: '.swiper-button-prev',
       },
     });
-
     var manage = new Swiper('.manage .swiper-container', {
       pagination: {
         el: '.swiper-pagination',
@@ -18,13 +17,10 @@ $(function(){
         },
       },
     });
-
      //링크안타지기
      $('header .top-sub li a').click(function(e){
       e.preventDefault();
     })
-
-
     // 로그인
     $('.top-sub .login').click(function(){
       if($(this).hasClass('on')){
@@ -36,10 +32,7 @@ $(function(){
         $('header .top-sub li:nth-child(2) a').text('회원가입')
         $(this).addClass('on')
       }      
-    })
-
-
-   
+    })   
     // 로그인창에서 회원가입 열기
     $('#login .idpw .membership').click(function(){
       $('.wrap-form').show()
@@ -57,7 +50,6 @@ $(function(){
     $('#login .idpw #idfind').click(function(){
       $('.idfind').show()
     })
-
     //  아이디찾기 라디오 버튼 table 보이기
     $('.idfind form .radio').click(function(){
          if($('.radio').is(':checked')==true){
@@ -73,7 +65,6 @@ $(function(){
         $(this).parents('table').find('.reads').removeAttr('readonly').css('background','white')
       }      
     })
-
     $('.idfind span.ok').click(function(){
       var len=$('.idfind .read').val().length      
       if($('.idfind .idone .one').hasClass('on')){
@@ -111,10 +102,8 @@ $(function(){
       })
     $('.idfind i').click(function(){
       $('.idfind').hide()
-    })
-    
-  // 비밀번호찾기
-  
+    })    
+  // 비밀번호찾기  
   $('#login .idpw #pwfind').click(function(){
     $('.pwfind').show()
   })
@@ -144,7 +133,6 @@ $(function(){
 $('.pwfind i').click(function(){
   $('.pwfind').hide()        
   })
-
     $('.btn').click(function(){      
       var id=$('#id').val(); 
       var password=$('#password').val();      
@@ -159,14 +147,10 @@ $('.pwfind i').click(function(){
         $('header .top-sub li:nth-child(2) a').text('My hollys')        
         }
     })
-
     $('#login button').click(function(){
       $('#login').hide()
       $('.top-sub li:nth-child(1)').addClass('on')
     })
-
-    
-
     // 언어
     $('.top-sub i').click(function(){
       if($(this).hasClass('on')){
@@ -183,7 +167,6 @@ $('.pwfind i').click(function(){
         $(this).prev().addClass('on')
       }
     })
-
     $('.top-sub .lang li').click(function(){
       $(this).prependTo('.top-sub .lang')
       $('.lang li:nth-child(2)').hide()
@@ -200,14 +183,12 @@ $('.pwfind i').click(function(){
       $('.depth2-bg').hide()
       $('.gnb ul').hide()
     })
-
     $('.gnb>li').mouseenter(function(){      
       var a=$(this).find('a#on').text().length
       var small=$(this).find('a#on small').text().length
       var i=$(this).find('a#on').text().slice(0,(a-small));    
       $('nav h2').text(i)
     })
-
     // 맴버쉽 부분
     $('.mamber .right .postic ul li').click(function(){
       $('.mamber .right .postic ul li').removeClass('on')
@@ -240,9 +221,6 @@ $('.pwfind i').click(function(){
       $('#manage').scrollTop(0)
       // #manage 스크롤 내리고 껏을때 스크롤을 위로 올려야되는데 안됨..
     })
-
-
-
     // 약관동의 빈항목이 계속 나온다
     $('#manage .sub').click(function(e){
     if(!$('#manage #che').is(':checked')){
@@ -258,12 +236,10 @@ $('.pwfind i').click(function(){
       $('#manage #address').focus()
     }     
   });
-
   $("#mailselect").on("change", function(){        
     var sel=$('#mailselect option:selected').text();        
    $('#manage #add').val(sel)    
   });
-
   //지도 열기
   $('.find #find').click(function(){
     $('.map_wrap').css('width','1240px').css('height','540px').css('opacity','1')
@@ -278,7 +254,6 @@ $('.pwfind i').click(function(){
     $('.map_wrap').css('width','0%').css('height','0px').css('opacity','0')
     $('.find div.black').hide()
   })
-
     // 할리스 라이브
     $('.hollys-live>div>div').click(function(){
       var src=$(this).find('img').attr('src')
@@ -299,63 +274,61 @@ $('.pwfind i').click(function(){
     $('.hollys-live .popup button').click(function(){
       $('.hollys-live .popup').hide()
       $('.hollys-live .black').hide()
-    })
-  
-
+    })  
     // 우편번호
-       //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-       function sample4_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+      //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+      function sample4_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function(data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
+          // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          var roadAddr = data.roadAddress; // 도로명 주소 변수
+          var extraRoadAddr = ''; // 참고 항목 변수
 
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
+          // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+          // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+          if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+              extraRoadAddr += data.bname;
+          }
+          // 건물명이 있고, 공동주택일 경우 추가한다.
+          if(data.buildingName !== '' && data.apartment === 'Y'){
+              extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+          }
+          // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+          if(extraRoadAddr !== ''){
+              extraRoadAddr = ' (' + extraRoadAddr + ')';
+          }
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("sample4_extraAddress").value = '';
-                }
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById('sample4_postcode').value = data.zonecode;
+          document.getElementById("sample4_roadAddress").value = roadAddr;
+          document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+          
+          // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+          if(roadAddr !== ''){
+              document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+          } else {
+              document.getElementById("sample4_extraAddress").value = '';
+          }
 
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
+          var guideTextBox = document.getElementById("guide");
+          // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+          if(data.autoRoadAddress) {
+              var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+              guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+              guideTextBox.style.display = 'block';
 
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
+          } else if(data.autoJibunAddress) {
+              var expJibunAddr = data.autoJibunAddress;
+              guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+              guideTextBox.style.display = 'block';
+          } else {
+              guideTextBox.innerHTML = '';
+              guideTextBox.style.display = 'none';
+          }
+        }
+      }).open();
     }
 })

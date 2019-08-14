@@ -4,21 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/hollys.css">
+    <title>hollys</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">  
     <link rel="stylesheet" href="css/swiper.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-    <title>Document</title>
+    <link rel="stylesheet" href="css/hollys.css">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/swiper.min.js"></script>
-    <script src="js/hollys.js"></script>
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1063e75574d4ed25c6274f87a85bb895"></script>
-    <script type="text/javascript" src="https//dapi.kakao.com/v2/maps/sdk.js?appkey=1063e75574d4ed25c6274f87a85bb895&libraries=services"></script>
-
-    
-    
-    
-
-    
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=1063e75574d4ed25c6274f87a85bb895&libraries=services"></script>    
+    <script src="js/hollys.js"></script>    
 </head>
 <body> 
     <div id="login">
@@ -63,31 +56,27 @@
             alert("아이디 입력바람");
             $("#tbID").focus();
             return false;
-          }
-     
+          }    
           //이름의 유효성 검사
           if(!getCheck.test($("#tbID").val())){
             alert("형식에 맞게 입력해주세요");
             $("#tbID").val("");
             $("#tbID").focus();
             return false;
-          }
-     
+          }     
           //비밀번호
           if(!getCheck.test($("#tbPwd").val())) {
           alert("형식에 맞춰서 PW를 입력해주세요");
           $("#tbPwd").val("");
           $("#tbPwd").focus();
           return false;
-          }
-     
+          }     
           //아이디랑 비밀번호랑 같은지
           if ($("#tbID").val()==($("#tbPwd").val())) {
           alert("비밀번호와 아이디가 같습니다. 다시입력해주세요");
           $("#tbPwd").val("");
           $("#tbPwd").focus();
-          }
-     
+          }     
           //비밀번호 똑같은지
           if($("#tbPwd").val() != ($("#cpass").val())){ 
           alert("비밀번호가 다릅니다.");
@@ -95,31 +84,27 @@
           $("#cpass").val("");
           $("#tbPwd").focus();
           return false;
-         }
-     
+         }     
          //이메일 공백 확인
           if($("#mail").val() == ""){
             alert("이메일을 입력해주세요");
             $("#mail").focus();
             return false;
-          }
-               
+          }               
           //이메일 유효성 검사
           if(!getMail.test($("#mail").val())){
             alert("이메일형식에 맞게 입력해주세요")
             $("#mail").val("");
             $("#mail").focus();
             return false;
-          }
-     
+          }     
           //이름 유효성
           if (!getName.test($("#name").val())) {
             alert("이름을 적어주세요");
             $("#name").val("");
             $("#name").focus();
             return false;
-          }
-     
+          }     
           //주민번호
           if(($("#id_num").val() == "") || ($("#id_num_back").val() == "")){
             alert("주민등록번호를 입력해주세요");
@@ -148,11 +133,9 @@
       //주민번호 확인 함수
       function check_jumin() {
         var jumins3 = $("#pnum").val() + $("#nnum").val();
-          //주민등록번호 생년월일 전달
-             
+          //주민등록번호 생년월일 전달             
           var fmt = RegExp(/^\d{6}[1234]\d{6}$/)  //포멧 설정
-          var buf = new Array(13);
-     
+          var buf = new Array(13);     
           //주민번호 유효성 검사
           if (!fmt.test(jumins3)) {
             alert("주민등록번호 형식에 맞게 입력해주세요");
@@ -162,15 +145,13 @@
           //주민번호 존재 검사
           for (var i = 0; i < buf.length; i++){
             buf[i] = parseInt(jumins3.charAt(i));
-          }
-     
+          }     
           var multipliers = [2,3,4,5,6,7,8,9,2,3,4,5];// 밑에 더해주는 12자리 숫자들 
           var sum = 0;
      
           for (var i = 0; i < 12; i++){
           sum += (buf[i] *= multipliers[i]);// 배열끼리12번 돌면서 
-        }
-     
+        }     
         if ((11 - (sum % 11)) % 10 != buf[12]) {
           alert("잘못된 주민등록번호 입니다.");
           $("#pnum").focus();
@@ -186,77 +167,76 @@
         $("#day").val(birthDate);            
             }             
       </script>
-    <div class="wrap-form">
+<div class="wrap-form">
     <form onsubmit="return checkz()" > 
-    <h2>회원가입</h2>     
-    <i class="material-icons">close </i>
-       <table cellspacing="0">    
-            <tr> 
-              <th >아이디</th>
-              <td colspan="4"><input type="text" name="id" maxlength="12" id="tbID"placeholder="아이디를 입력하세요" > 4~12자리의 영문 대소문자와 숫자로만 입력</td>
-           </tr>
-           <tr>
-              <th >비밀번호</th>
-               <td colspan="4"><input type="password" maxlength="12" id="tbPwd" placeholder="비밀번호를 입력하세요"> 4~12자리의 영문 대소문자와 숫자로만 입력</td>
-           </tr>
-           <tr>
-              <th >비밀번호확인</th>
-               <td colspan="5"><input type="password" id="cpass" maxlength="12"placeholder="비밀번호를 재입력하세요"></td>               
-           </tr>
-            <tr>
-              <th>메일주소</th>
-              <td colspan="4"><input type="text" name="addr" id="mail" placeholder="이메일을 입력하세요">
-              예)id@domain.com</td>
-           </tr>
-           <tr>
-              <th>이름</th>
-              <td colspan="3"><input type="text" name="nam" id="name" placeholder="이름를 입력하세요"></td>
+        <h2>회원가입</h2>     
+        <i class="material-icons">close </i>
+        <table cellspacing="0">    
+                <tr> 
+                <th >아이디</th>
+                <td colspan="4"><input type="text" name="id" maxlength="12" id="tbID"placeholder="아이디를 입력하세요" > 4~12자리의 영문 대소문자와 숫자로만 입력</td>
             </tr>
-           
             <tr>
-              <th>주민등록번호</th>
-              <td colspan="4"><input type="text" name="jum" id="pnum"placeholder="주민등록번호 앞자리">-<input type="password" name="jumin" id="nnum" >예)123456789</td>
-           </tr>     
-           <tr class="birth">
-              <th >생일</th>
-              <td>
-                <input type="text" autocomplete="OFF" name="nyear" id="year"  placeholder="년" > 
-                <input type="text" autocomplete="OFF" name="nmonth" id="month"placeholder="월"> 
-                <input type="text" autocomplete="OFF" name="nday" id="day" placeholder="일" > 
-            </td>    
-           </tr>     
-          <tr class="faver  ">
-            <th>관심분야</th>
-            <td colspan="3"><input type="checkbox" name="hobby[]" value="컴퓨터" >원두
-                <input type="checkbox" name="hobby[]" value="인터넷">핸드드립
-                <input type="checkbox" name="hobby[]" value="여행">스무디
-                <input type="checkbox" name="hobby[]" value="영화감상">베이커리
-                <input type="checkbox" name="hobby[]" value="음악감상">기타
-            </td>
-        </tr>     
-        <tr style="display: none">
-            <td >자기소개</td>
-            <td colspan="3"><textarea name="my_intro" id="intro" cols="50" rows="5"></textarea></td>
-        </tr>   
-        <tr class="phone">
-            <th >휴대전화 번호</th>
-            <td>                   
-               <select name="" id="">
-                   <option value="">010</option>
-                   <option value="">011</option>
-                   <option value="">020</option>
-                   <option value="">030</option>
-                   <option value="">040</option>
-               </select>-
-                <input type="text" >- <input type="text" > 
-            </td>    
-             </tr>           
-    </table>
-    <p class="submit">
+                <th >비밀번호</th>
+                <td colspan="4"><input type="password" maxlength="12" id="tbPwd" placeholder="비밀번호를 입력하세요"> 4~12자리의 영문 대소문자와 숫자로만 입력</td>
+            </tr>
+            <tr>
+                <th >비밀번호확인</th>
+                <td colspan="5"><input type="password" id="cpass" maxlength="12"placeholder="비밀번호를 재입력하세요"></td>               
+            </tr>
+                <tr>
+                <th>메일주소</th>
+                <td colspan="4"><input type="text" name="addr" id="mail" placeholder="이메일을 입력하세요">
+                예)id@domain.com</td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td colspan="3"><input type="text" name="nam" id="name" placeholder="이름를 입력하세요"></td>
+                </tr>
+            
+                <tr>
+                <th>주민등록번호</th>
+                <td colspan="4"><input type="text" name="jum" id="pnum"placeholder="주민등록번호 앞자리">-<input type="password" name="jumin" id="nnum" >예)123456789</td>
+            </tr>     
+            <tr class="birth">
+                <th >생일</th>
+                <td>
+                    <input type="text" autocomplete="OFF" name="nyear" id="year"  placeholder="년" > 
+                    <input type="text" autocomplete="OFF" name="nmonth" id="month"placeholder="월"> 
+                    <input type="text" autocomplete="OFF" name="nday" id="day" placeholder="일" > 
+                </td>    
+            </tr>     
+            <tr class="faver  ">
+                <th>관심분야</th>
+                <td colspan="3"><input type="checkbox" name="hobby[]" value="컴퓨터" >원두
+                    <input type="checkbox" name="hobby[]" value="인터넷">핸드드립
+                    <input type="checkbox" name="hobby[]" value="여행">스무디
+                    <input type="checkbox" name="hobby[]" value="영화감상">베이커리
+                    <input type="checkbox" name="hobby[]" value="음악감상">기타
+                </td>
+            </tr>     
+            <tr style="display: none">
+                <td >자기소개</td>
+                <td colspan="3"><textarea name="my_intro" id="intro" cols="50" rows="5"></textarea></td>
+            </tr>   
+            <tr class="phone">
+                <th >휴대전화 번호</th>
+                <td>                   
+                <select name="" id="">
+                    <option value="">010</option>
+                    <option value="">011</option>
+                    <option value="">020</option>
+                    <option value="">030</option>
+                    <option value="">040</option>
+                </select>-
+                    <input type="text" >- <input type="text" > 
+                </td>    
+                </tr>           
+        </table>
+        <p class="submit">
         <input type="submit" value="회원가입" class="h1">               
     </p>    
    </form>
-  
 </div>     
 <div class="idfind">
     <form action="">
@@ -339,7 +319,6 @@
         <span class="ok">확인</span>
     </form>
 </div>
-
     <!-- 로그인 부분   -->
     <header class="center"> 
         <h1><a href="#" class="logo"> <span class="blind">할리스로고</span></a></h1>
@@ -415,7 +394,6 @@
             </div>
         </nav>          
     </header>
-    
     <span class="liner"></span>
     <div class="bg-slide">
         <div class="swiper-container">
@@ -451,7 +429,6 @@
                 <span></span>
                 <span></span>
                 <span></span>
-
             </span>
         </div>
         <!-- 오른쪽 실버 골드 레드  -->
@@ -612,8 +589,6 @@
                 map.setLevel(map.getLevel() + 1);
             }
             </script>
-
-
         <div class="black"></div>
             <div class="center">
                 <div class="left">
@@ -633,7 +608,6 @@
             </div>
         </div>
     </article>
-
     <div id="manage">
             <button class="close"><i class="material-icons">close </i></button>  
         <h1>가맹문의안내</h1>
@@ -728,12 +702,8 @@
                             <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
                             <span id="guide" style="color:#999;display:none"></span>
                             <input type="text" id="sample4_detailAddress" placeholder="상세주소">
-                            <input type="text" id="sample4_extraAddress" placeholder="참고항목">
-                            
-                            <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-                            <script>
-                             
-                            </script>
+                            <input type="text" id="sample4_extraAddress" placeholder="참고항목">                            
+                            <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>                            
                         </td>
                     </tr>
               </table>
@@ -808,8 +778,7 @@
                             arrow_forward</i></a>
                 </div>
             </div>
-        </div>
-       
+        </div>       
         <div class="bottom">
             <div class="live6">
                 <img src="img/live6.png" alt="2019.6.11">
