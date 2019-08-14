@@ -1,6 +1,8 @@
 
 $(function(){
 $('.loding').css('opacity','0')
+setTimeout(function() {$('.loding').remove()}, 1000);
+
   var bgSlide = new Swiper('.bg-slide .swiper-container', {
       pagination: {
           el: '.swiper-pagination',
