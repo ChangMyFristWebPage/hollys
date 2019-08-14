@@ -357,7 +357,14 @@ $('.pwfind i').click(function(){
     ps.keywordSearch('할리스', placesSearchCB); 
 
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-   
+    function placesSearchCB ( status, ) {
+        if (status === kakao.maps.services.Status.OK) {
+
+           
+        
+        } 
+    }
+
     // 지도에 마커를 표시하는 함수입니다
     function displayMarker(place) {
         
