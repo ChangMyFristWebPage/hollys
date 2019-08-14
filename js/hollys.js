@@ -30,6 +30,11 @@ $(function(){
         $(this).addClass('on')
       }      
     })
+        //링크안타지기
+  $('header .top-sub li a').click(function(e){
+    e.preventDefault();
+  })
+
    
     // 로그인창에서 회원가입 열기
     $('#login .idpw .membership').click(function(){
@@ -270,7 +275,28 @@ $('.pwfind i').click(function(){
     $('.find div.black').hide()
   })
 
-
+    // 할리스 라이브
+    $('.hollys-live>div>div').click(function(){
+      var src=$(this).find('img').attr('src')
+      var alt=$(this).find('img').attr('alt')
+      var p=$(this).find('p').text()
+      var strong=$(this).find('strong').text()
+      $('.hollys-live .popup').show()
+      $('.hollys-live .black').show()
+      $('.popup .poto img').attr('src',src)
+      $('.popup .poto img').attr('alt',alt)
+      $('.popup .text p').text(p)
+      $('.popup .text strong').text(strong)
+    })
+    $('.hollys-live .black').click(function(){
+      $('.popup').hide()
+      $(this).hide()
+    })
+    $('.hollys-live .popup button').click(function(){
+      $('.hollys-live .popup').hide()
+      $('.hollys-live .black').hide()
+    })
+  
   // 지도
   var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
@@ -337,32 +363,7 @@ infowindow.open(map, marker);
 
 
 
-    // 할리스 라이브
-  $('.hollys-live>div>div').click(function(){
-    var src=$(this).find('img').attr('src')
-    var alt=$(this).find('img').attr('alt')
-    var p=$(this).find('p').text()
-    var strong=$(this).find('strong').text()
-    $('.hollys-live .popup').show()
-    $('.hollys-live .black').show()
-    $('.popup .poto img').attr('src',src)
-    $('.popup .poto img').attr('alt',alt)
-    $('.popup .text p').text(p)
-    $('.popup .text strong').text(strong)
-  })
-  $('.hollys-live .black').click(function(){
-    $('.popup').hide()
-    $(this).hide()
-  })
-  $('.hollys-live .popup button').click(function(){
-    $('.hollys-live .popup').hide()
-    $('.hollys-live .black').hide()
-  })
 
-    //링크안타지기
-  $('header .top-sub li a').click(function(e){
-    e.preventDefault();
-  })
 
 
 

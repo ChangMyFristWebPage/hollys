@@ -245,7 +245,7 @@ article.manage{text-align: center;margin-top: 40px}
 #manage>button{color: #444; float: right;}
 #manage .top{margin: 40px 0 40px 20px;}
 #manage .bottom{ margin-left: 20px;}
-#manage .bottom .protect{overflow: scroll; width: 80%; height: 200px; border:1px solid #444; overflow-x: hidden;color: #888;
+#manage .bottom .protect{overflow: scroll; width: 100%; height: 200px; border:1px solid #444; overflow-x: hidden;color: #888;
 line-height: 2;}
 #manage .bottom .protect b{color: #444;font-size: 20px;}
 #manage .bottom .text .text3 p{display: inline-block}
@@ -293,6 +293,7 @@ position: relative; overflow: hidden; }
 .hollys-live .top .live1{width: 240px; height: 180px;}
 .hollys-live div img{width: 100%;transition: 0.5s}
 .hollys-live div img:hover{transform: scale(1.1)}
+.hollys-live .popup .poto img{transform: scale(1)}
 .hollys-live .top .live2{width: 160px; height: 220px;}
 .hollys-live .top .live3{width: 180px; height: 120px;}
 .hollys-live .top .live4{width: 320px; height: 220px;}
